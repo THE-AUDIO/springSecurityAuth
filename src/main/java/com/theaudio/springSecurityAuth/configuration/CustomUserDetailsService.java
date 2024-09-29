@@ -20,7 +20,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         DBUser user = this.dbUserRepository.findByUsername(username);
-        System.out.println(user);
+        if(user == null){
+            throw new UsernameNotFoundException("User not found");
+        }
         return new User(user.getUsername(), user.getPassword(), getGrantedAuthorities(user.getRole()));
     }
     private List<GrantedAuthority> getGrantedAuthorities(String role){

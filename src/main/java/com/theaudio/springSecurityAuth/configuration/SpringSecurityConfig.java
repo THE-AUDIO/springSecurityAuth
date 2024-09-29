@@ -31,21 +31,21 @@ public class SpringSecurityConfig {
                  auth.anyRequest().authenticated();// sans connecter on peut pas acceder à l'url de l'App
              }).formLogin(Customizer.withDefaults()).oauth2Login(Customizer.withDefaults()).build();
     }
-    @Bean
-    public UserDetailsService users(){
-        UserDetails user = User.builder()
-                .username("user")
-                .password(passwordEncoder().encode("user"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(passwordEncoder().encode("admin"))
-                .roles("ADMIN", "USER")
-                .build();
-     return new InMemoryUserDetailsManager(user, admin);
-    }
+//    @Bean
+//    public UserDetailsService users(){
+//        UserDetails user = User.builder()
+//                .username("user")
+//                .password(passwordEncoder().encode("user"))
+//                .roles("USER")
+//                .build();
+//
+//        UserDetails admin = User.builder()
+//                .username("admin")
+//                .password(passwordEncoder().encode("admin"))
+//                .roles("ADMIN", "USER")
+//                .build();
+//     return new InMemoryUserDetailsManager(user, admin);
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
